@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS users (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid (),
     username varchar(255) UNIQUE NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
+    hashed_password varchar(255) NOT NULL,
     display_name varchar(50) NOT NULL,
     birth_day date NOT NULL,
     gender varchar(20) NOT NULL,
