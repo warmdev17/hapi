@@ -10,5 +10,5 @@ import (
 func main() {
 	ctx := context.Background()
 	cfg := config.Load()
-	fmt.Println(ctx, cfg)
+	fmt.Println(ctx, cfg.Database.Name)
 }
