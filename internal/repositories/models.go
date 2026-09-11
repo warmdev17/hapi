@@ -20,14 +20,24 @@ type Couple struct {
 	UpdatedAt time.Time   `json:"updated_at"`
 }
 
+type RefreshToken struct {
+	ID        uuid.UUID `json:"id"`
+	UserID    uuid.UUID `json:"user_id"`
+	TokenHash string    `json:"token_hash"`
+	FamilyID  uuid.UUID `json:"family_id"`
+	IsRevoked bool      `json:"is_revoked"`
+	CreatedAt time.Time `json:"created_at"`
+	ExpiredAt time.Time `json:"expired_at"`
+}
+
 type User struct {
-	ID             uuid.UUID   `json:"id"`
-	Username       string      `json:"username"`
-	Email          string      `json:"email"`
-	HashedPassword string      `json:"hashed_password"`
-	DisplayName    string      `json:"display_name"`
-	BirthDay       pgtype.Date `json:"birth_day"`
-	Gender         string      `json:"gender"`
-	CreatedAt      time.Time   `json:"created_at"`
-	UpdatedAt      time.Time   `json:"updated_at"`
+	ID             uuid.UUID `json:"id"`
+	Username       string    `json:"username"`
+	Email          string    `json:"email"`
+	HashedPassword string    `json:"hashed_password"`
+	DisplayName    string    `json:"display_name"`
+	BirthDay       time.Time `json:"birth_day"`
+	Gender         string    `json:"gender"`
+	CreatedAt      time.Time `json:"created_at"`
+	UpdatedAt      time.Time `json:"updated_at"`
 }

@@ -7,8 +7,7 @@ package repositories
 
 import (
 	"context"
-
-	"github.com/jackc/pgx/v5/pgtype"
+	"time"
 )
 
 const checkEmailExists = `-- name: CheckEmailExists :one
@@ -37,12 +36,12 @@ RETURNING
 `
 
 type CreateUserParams struct {
-	Username       string      `json:"username"`
-	Email          string      `json:"email"`
-	HashedPassword string      `json:"hashed_password"`
-	DisplayName    string      `json:"display_name"`
-	BirthDay       pgtype.Date `json:"birth_day"`
-	Gender         string      `json:"gender"`
+	Username       string    `json:"username"`
+	Email          string    `json:"email"`
+	HashedPassword string    `json:"hashed_password"`
+	DisplayName    string    `json:"display_name"`
+	BirthDay       time.Time `json:"birth_day"`
+	Gender         string    `json:"gender"`
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {

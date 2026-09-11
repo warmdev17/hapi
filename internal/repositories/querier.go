@@ -10,8 +10,10 @@ import (
 
 type Querier interface {
 	CheckEmailExists(ctx context.Context, email string) (bool, error)
+	CreateRefreshToken(ctx context.Context, arg CreateRefreshTokenParams) (RefreshToken, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	GetUserByEmail(ctx context.Context, email string) (User, error)
+	RevokeToken(ctx context.Context, arg RevokeTokenParams) error
 }
 
 var _ Querier = (*Queries)(nil)
