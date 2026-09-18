@@ -1,7 +1,6 @@
 package domain
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -20,6 +19,6 @@ func NewGender(value string) (Gender, error) {
 	case GenderMale, GenderFemale, GenderOther:
 		return Gender(value), nil
 	default:
-		return "", fmt.Errorf("invalid gender")
+		return "", ErrInvalidGender
 	}
 }
