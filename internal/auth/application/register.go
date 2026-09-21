@@ -36,7 +36,7 @@ type UserRepository interface {
 }
 
 type PasswordHasher interface {
-	Hash(password string) (string, error)
+	Hash(password userdomain.Password) (string, error)
 }
 
 type TokenProvider interface {
@@ -98,7 +98,12 @@ func (s *RegisterService) Execute(
 		return nil, err
 	}
 
-	hashedPassword, err := s.passwordHasher.Hash(input.Password)
+	password, err := userdomain.NewPassword(input.Password)
+	if err != nil {
+		return nil, err
+
+	}
+	hashedPassword, err := s.passwordHasher.Hash((password))
 	if err != nil {
 		return nil, err
 	}

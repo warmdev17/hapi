@@ -1,6 +1,9 @@
 package password
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	userdomain "github.com/warmdev17/hapi/internal/user/domain"
+	"golang.org/x/crypto/bcrypt"
+)
 
 type BcryptHasher struct {
 	cost int
@@ -12,7 +15,7 @@ func NewBcryptHasher(cost int) *BcryptHasher {
 	}
 }
 
-func (h *BcryptHasher) Hash(password string) (string, error) {
+func (h *BcryptHasher) Hash(password userdomain.Password) (string, error) {
 	hash, err := bcrypt.GenerateFromPassword([]byte(password), h.cost)
 	if err != nil {
 		return "", err
