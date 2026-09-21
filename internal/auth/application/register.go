@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	authdomain "github.com/warmdev17/hapi/internal/auth/domain"
 	userdomain "github.com/warmdev17/hapi/internal/user/domain"
 )
 
@@ -82,7 +81,7 @@ func (s *RegisterService) Execute(
 		return nil, err
 	}
 	if emailTaken {
-		return nil, authdomain.ErrEmailTaken
+		return nil, userdomain.ErrEmailTaken
 	}
 
 	usernameTaken, err := s.userRepo.ExistsByUsername(ctx, input.Username)
@@ -90,7 +89,7 @@ func (s *RegisterService) Execute(
 		return nil, err
 	}
 	if usernameTaken {
-		return nil, authdomain.ErrUsernameTaken
+		return nil, userdomain.ErrUsernameTaken
 	}
 
 	gender, err := userdomain.NewGender(input.Gender)
