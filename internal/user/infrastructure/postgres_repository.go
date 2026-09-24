@@ -8,12 +8,12 @@ import (
 )
 
 type PostgresUserRepository struct {
-	querires *db.Queries
+	queries *db.Queries
 }
 
 func NewPostgresUserRepository(queries *db.Queries) *PostgresUserRepository {
 	return &PostgresUserRepository{
-		querires: queries,
+		queries: queries,
 	}
 }
 
@@ -21,18 +21,18 @@ func (r *PostgresUserRepository) ExistsByEmail(
 	ctx context.Context,
 	email userdomain.Email,
 ) (bool, error) {
-	return r.querires.CheckEmailExists(ctx, email.String())
+	return r.queries.CheckEmailExists(ctx, email.String())
 }
 
 func (r *PostgresUserRepository) ExistsByUsername(
 	ctx context.Context,
 	username string,
 ) (bool, error) {
-	return r.querires.CheckUsernameExists(ctx, username)
+	return r.queries.CheckUsernameExists(ctx, username)
 }
 
 func (r *PostgresUserRepository) Save(ctx context.Context, user *userdomain.User) (*userdomain.User, error) {
-	u, err := r.querires.CreateUser(ctx, db.CreateUserParams{
+	u, err := r.queries.CreateUser(ctx, db.CreateUserParams{
 		Username:       user.Username(),
 		Email:          user.Email().String(),
 		HashedPassword: user.HashedPassword(),
